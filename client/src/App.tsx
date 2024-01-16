@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
 import { ThemeProvider } from "@/components/ui/theme-provider"
-import { Button } from "@/components/ui/button"
+// import { Button } from "@/components/ui/button"
 import { ModeToggle } from './components/ui/mode-toggle'
+import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
+
 import './App.css'
-import Register from './components/Register'
+import Login from './components/Login'
+import Home from './components/Home';
 
 
 function App() {
@@ -19,12 +22,21 @@ function App() {
   useEffect(() => {
  getData()
 
-  })
+  }, [])
 
-  return (
-    <div className='flex items-center justify-center'>
-      <Register />
+  return (<>
+    <BrowserRouter>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <div className='p-1 flex justify-end'>
+    <ModeToggle/>
     </div>
+    <Routes>
+    <Route path='/' element={<Login/>} />
+    <Route path='/home' element={<Home/>} />
+    </Routes>
+    </ThemeProvider>
+    </BrowserRouter>
+  </>
   )
 }
 
