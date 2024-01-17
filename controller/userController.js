@@ -1,5 +1,5 @@
-const getAllUserData = (req, res) => {
-  res.json({ data: 'hello' });
+const getAllUsers = (req, res) => {
+  res.json({ data: 'hello, users' });
 };
 
-module.exports = { getAllUserData };
+module.exports = { getAllUsers };

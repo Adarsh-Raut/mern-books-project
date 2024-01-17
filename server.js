@@ -5,7 +5,8 @@ const userRoutes = require('./routes/userRoutes');
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use('/api', userRoutes);
+app.use('/users', userRoutes);
+app.use('/books', userRoutes);
 
 db.then(() => {
   console.log('Connected to MongoDB database');

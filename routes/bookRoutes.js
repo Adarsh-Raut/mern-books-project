@@ -1,8 +1,8 @@
 const express = require('express');
-const { getAllUsers } = require('../controller/userController');
+const { getAllBooks } = require('../controller/bookController');
 
 const router = express.Router();
 
-router.get('/', getAllUsers);
+router.get('/', getAllBooks);
 
 module.exports = router;

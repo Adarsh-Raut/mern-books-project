@@ -5,7 +5,7 @@ import { ModeToggle } from './components/ui/mode-toggle'
 import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 
 import './App.css'
-import Login from './components/Login'
+import Register from './components/Register'
 import Home from './components/Home';
 
 
@@ -31,7 +31,7 @@ function App() {
     <ModeToggle/>
     </div>
     <Routes>
-    <Route path='/' element={<Login/>} />
+    <Route path='/' element={<Register/>} />
     <Route path='/home' element={<Home/>} />
     </Routes>
     </ThemeProvider>
