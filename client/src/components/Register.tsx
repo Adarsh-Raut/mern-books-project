@@ -16,6 +16,16 @@ const Register = () => {
  const [isRegistered, setIsRegistered] = useState(true)
  const navigate = useNavigate()
 
+ function changeNavigation () {
+  // if 
+  if (isRegistered) navigate('/home')
+  else {
+// if Registration successful then navigate to login otherwise stay on register
+    setIsRegistered((prevValue) => !prevValue)
+    navigate('/')
+}
+ }
+
   return (
     <div className="flex items-center justify-center ">
     <Card className=" md:w-[40%]" >
@@ -38,7 +48,7 @@ const Register = () => {
       </div>
     </CardContent>
     <CardFooter className="flex justify-start">
-      <Button  onClick={() => navigate('/home')} >{isRegistered ? "Login" : "Register"}</Button>
+      <Button  onClick={() => changeNavigation() } >{isRegistered ? "Login" : "Register"}</Button>
     </CardFooter>
     <CardDescription className="m-2 flex justify-start hover:text-slate-500" >
       <Link onClick={() => setIsRegistered((prevValue) => !prevValue)} to="/">{isRegistered ? "Don't have an account? Register here." : "Already have an account? Login here."}</Link>

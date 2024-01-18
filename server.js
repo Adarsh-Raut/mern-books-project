@@ -2,11 +2,14 @@ const express = require('express');
 const cors = require('cors');
 const db = require('./config/config');
 const userRoutes = require('./routes/userRoutes');
+const bookRoutes = require('./routes/bookRoutes');
+const authRoutes = require('./routes/authRoutes');
 const app = express();
 app.use(express.json());
 app.use(cors());
 app.use('/users', userRoutes);
-app.use('/books', userRoutes);
+app.use('/books', bookRoutes);
+app.use('/auth', authRoutes);
 
 db.then(() => {
   console.log('Connected to MongoDB database');
@@ -15,5 +18,4 @@ db.then(() => {
   });
 });
 
-// Todo create user database table
-// Todo create book database table
+// Todo auth routes for user
