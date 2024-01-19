@@ -7,20 +7,9 @@ import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Register from './components/Register';
 import Home from './components/Home';
+import CreateBook from './components/CreateBook';
 
 function App() {
-  const [data, setData] = useState('');
-  async function getData() {
-    const response = await fetch('http://localhost:5000');
-    const responseData = await response.json();
-    // console.log(typeof responseData)
-    setData(responseData);
-  }
-
-  useEffect(() => {
-    getData();
-  }, []);
-
   return (
     <>
       <BrowserRouter>
@@ -31,6 +20,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Register />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/create" element={<CreateBook />} />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>

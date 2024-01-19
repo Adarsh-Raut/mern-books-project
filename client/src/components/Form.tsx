@@ -17,16 +17,16 @@ import { Link, useNavigate } from 'react-router-dom';
 export const Form = () => {
   const [isRegistered, setIsRegistered] = useState(true);
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   async function registerUser(data) {
     const result = await axios.post('http://localhost:5000/auth/register', {
       email: data.email,
       password: data.password,
     });
-    // console.log(result);
-    if (result.data.message === 'success') {
+    if (result.status === 201) {
       setIsRegistered((prevValue) => !prevValue);
+      reset();
       navigate('/');
     }
   }
@@ -36,9 +36,7 @@ export const Form = () => {
       email: data.email,
       password: data.password,
     });
-    console.log(result);
     if (result.status === 200) {
-      //   setIsRegistered((prevValue) => !prevValue);
       navigate('/home');
     }
   }
@@ -64,7 +62,7 @@ export const Form = () => {
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
-                {...register('email')}
+                {...register('email', { required: true })}
                 id="email"
                 type="email"
                 placeholder="m@example.com"
@@ -72,7 +70,12 @@ export const Form = () => {
             </div>
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
-              <Input {...register('password')} id="password" type="password" />
+              <Input
+                {...register('password', { required: true })}
+                id="password"
+                type="password"
+                autoComplete="on"
+              />
             </div>
           </div>
         </CardContent>
