@@ -12,9 +12,9 @@ const userRegistration = async (req, res) => {
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
     const user = await User.create({ email, password: hashedPassword });
-    res.status(201).json({ message: 'success' });
+    res.status(201).json({ message: 'User registered successfully!' });
   } catch (error) {
-    res.status(500).json({ message: 'failure', error: error.message });
+    res.status(502).json({ error: error.message });
     console.log(error);
   }
 };
@@ -30,7 +30,7 @@ const userLogin = async (req, res) => {
     const token = jwt.sign({ id: user._id }, 'supersecretkey');
     res.status(200).json({ token, user });
   } catch (error) {
-    res.status(403).json({ message: 'failure', message: error.message });
+    res.status(403).json({ message: error.message });
     console.log(error);
   }
 };

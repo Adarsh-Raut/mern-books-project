@@ -1,7 +1,6 @@
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -11,21 +10,29 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const CreateBook = () => {
   const { register, handleSubmit, reset } = useForm();
+  const navigate = useNavigate();
 
   async function createBook(data) {
-    const { title, author, imageUrl, quote } = data;
-    const result = await axios.post('http://localhost:5000/books', {
-      title,
-      author,
-      imageUrl,
-      quote,
-    });
-    if (result.status === 201) {
-      reset();
+    try {
+      const { title, author, imageUrl, quote } = data;
+      const result = await axios.post('http://localhost:5000/books', {
+        title,
+        author,
+        imageUrl,
+        quote,
+      });
+      if (result.status === 201) {
+        reset();
+        navigate('/home');
+        toast.success('Book created successfull!');
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -33,6 +40,7 @@ const CreateBook = () => {
     <form
       onSubmit={handleSubmit((data) => createBook(data))}
       className=" flex items-center justify-center"
+      autoComplete="off"
     >
       <Card className="w-[350px] ">
         <CardHeader>

@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
 import { ThemeProvider } from '@/components/ui/theme-provider';
-// import { Button } from "@/components/ui/button"
 import { ModeToggle } from './components/ui/mode-toggle';
-import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 
 import './App.css';
 import Register from './components/Register';
@@ -22,6 +21,10 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/create" element={<CreateBook />} />
           </Routes>
+          <Toaster
+            position="top-right"
+            toastOptions={{ style: { background: '#363636', color: '#fff' } }}
+          />
         </ThemeProvider>
       </BrowserRouter>
     </>
