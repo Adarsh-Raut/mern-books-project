@@ -21,12 +21,12 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/create" element={<CreateBook />} />
           </Routes>
-          <Toaster
-            position="top-right"
-            toastOptions={{ style: { background: '#363636', color: '#fff' } }}
-          />
         </ThemeProvider>
       </BrowserRouter>
+      <Toaster
+        position="top-right"
+        toastOptions={{ style: { background: '#363636', color: '#fff' } }}
+      />
     </>
   );
 }

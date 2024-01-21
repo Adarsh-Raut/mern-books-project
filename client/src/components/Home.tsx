@@ -28,7 +28,7 @@ const Home: React.FC = () => {
     }
   }
 
-  async function handleDelete(id) {
+  async function handleDelete(id: string) {
     try {
       const res = await axios.delete(`http://localhost:5000/books/${id}`);
       if (res.status === 201) toast.success('Book deleted successfully!');
@@ -43,20 +43,23 @@ const Home: React.FC = () => {
       <Link className=" mx-1 flex justify-end" to="/create">
         <Button>Create</Button>
       </Link>
-      {books?.map((book) => (
-        <div
-          key={book._id}
-          className=" p-2 items-center container gap-4 flex  border-l-sky-500"
-        >
-          <img className="w-[8.5%]" src={book.imageUrl} alt={book._id} />
-          <div className=" flex-col flex items-start justify-start">
-            <span>{book.title}</span>
-            <span>{book.author}</span>
-            <span>{book.quote}</span>
-            <Button onClick={() => handleDelete(book._id)}>Delete</Button>
+      <div className="flex justify-center flex-wrap">
+        {books?.map((book) => (
+          <div key={book._id} className="m-2  w-[200px] border-l-sky-500">
+            <img
+              className=" w-[100px] h-[100px] "
+              src={book.imageUrl}
+              alt={book._id}
+            />
+            <h1>{book.title}</h1>
+            <h1>{book.author}</h1>
+            <h2>{book.quote}</h2>
+            <Button className="h-[25px]" onClick={() => handleDelete(book._id)}>
+              Delete
+            </Button>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </>
   );
 };
