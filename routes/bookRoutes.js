@@ -4,6 +4,7 @@ const {
   createBook,
   deleteBook,
 } = require('../controller/bookController');
+const { verifyToken } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 

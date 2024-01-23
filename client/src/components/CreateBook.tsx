@@ -30,7 +30,7 @@ const CreateBook = () => {
       if (result.status === 201) {
         reset();
         navigate('/home');
-        toast.success('Book created successfull!');
+        toast.success('Book created successfully!');
       }
     } catch (error) {
       console.log(error);
@@ -41,6 +41,7 @@ const CreateBook = () => {
     <div className="grid gap-4 w-full max-w-md mx-auto p-4 md:p-6">
       <h1 className="text-2xl font-bold text-center">Add a Book</h1>
       <form
+        autoComplete="off"
         onSubmit={handleSubmit((data) => createBook(data))}
         className="space-y-4"
       >
@@ -85,44 +86,6 @@ const CreateBook = () => {
         </Button>
       </form>
     </div>
-
-    // <form
-    //   onSubmit={handleSubmit((data) => createBook(data))}
-    //   className=" flex items-center justify-center"
-    //   autoComplete="off"
-    // >
-    //   <Card className="w-[350px] ">
-    //     <CardHeader>
-    //       <CardTitle>Add a Book</CardTitle>
-    //     </CardHeader>
-    //     <CardContent>
-    //       <div className="grid w-full items-center gap-4 justify-center">
-    //         <div className=" flex flex-row gap-2 items-center">
-    //           <Label htmlFor="title">Title:</Label>
-    //           <Input {...register('title', { required: true })} id="title" />
-    //         </div>
-    //         <div className="flex flex-row gap-2 items-center justify-center">
-    //           <Label htmlFor="author">Author:</Label>
-    //           <Input {...register('author', { required: true })} id="author" />
-    //         </div>
-    //         <div className="flex flex-row gap-2 items-center">
-    //           <Label htmlFor="imageUrl">ImageUrl:</Label>
-    //           <Input
-    //             {...register('imageUrl', { required: true })}
-    //             id="imageUrl"
-    //           />
-    //         </div>
-    //         <div className="flex flex-row gap-2 items-center">
-    //           <Label htmlFor="quote">Quote:</Label>
-    //           <Input {...register('quote', { required: true })} id="quote" />
-    //         </div>
-    //       </div>
-    //     </CardContent>
-    //     <CardFooter className="flex justify-end">
-    //       <Button type="submit">Add Book</Button>
-    //     </CardFooter>
-    //   </Card>
-    // </form>
   );
 };
 

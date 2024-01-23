@@ -7,15 +7,14 @@ import './App.css';
 import Register from './components/Register';
 import Home from './components/Home';
 import CreateBook from './components/CreateBook';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-          <div className="p-1 flex justify-end">
-            <ModeToggle />
-          </div>
+          <Navbar />
           <Routes>
             <Route path="/" element={<Register />} />
             <Route path="/home" element={<Home />} />

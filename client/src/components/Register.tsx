@@ -45,6 +45,7 @@ const Register = () => {
         email: data.email,
         password: data.password,
       });
+      console.log(result);
       if (result.status === 200) {
         navigate('/home');
       }
