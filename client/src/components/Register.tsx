@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 import axios from 'axios';
 import {
   Card,
@@ -11,14 +11,24 @@ import {
 import { Label } from './ui/label';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import useLoginStore from './store';
 
 const Register = () => {
   const [isRegistered, setIsRegistered] = useState(true);
   const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm();
+  const setIsLogin = useLoginStore((state) => state.setIsLogin);
+
+  useEffect(() => {
+    setIsLogin(false);
+
+    return () => {
+      setIsLogin(true);
+    };
+  }, [setIsLogin]);
 
   async function registerUser(data) {
     try {

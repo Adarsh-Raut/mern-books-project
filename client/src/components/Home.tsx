@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button } from './ui/button';
 import toast from 'react-hot-toast';
+import useLoginStore from './store';
 
 type Book = {
   _id: string;
@@ -43,7 +44,7 @@ const Home: React.FC = () => {
         {books?.map((book) => (
           <div
             key={book._id}
-            className=" relative group overflow-hidden rounded-lg"
+            className="relative group overflow-hidden rounded-lg"
           >
             <img
               alt={book.title}
@@ -52,7 +53,7 @@ const Home: React.FC = () => {
               src={book.imageUrl}
               style={{
                 aspectRatio: '400/400',
-                // objectFit: 'cover',
+                objectFit: 'cover',
               }}
               width={400}
             />

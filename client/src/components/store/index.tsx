@@ -1,23 +1,8 @@
 import { create } from 'zustand';
 
-const useUserStore = create((set) => ({
-  user: {
-    id: null,
-    name: '',
-    books: [],
-  },
-  setUser: (user) => set({ user }),
-  addBook: (book) =>
-    set((state) => ({
-      user: { ...state.user, books: [...state.user.books, book] },
-    })),
-  removeBook: (bookId) =>
-    set((state) => ({
-      user: {
-        ...state.user,
-        books: state.user.books.filter((book) => book.id !== bookId),
-      },
-    })),
+const useLoginStore = create((set) => ({
+  isLogin: true,
+  setIsLogin: (newValue) => set({ isLogin: newValue }),
 }));
 
-export default useUserStore;
+export default useLoginStore;
